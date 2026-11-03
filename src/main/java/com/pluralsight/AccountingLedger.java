@@ -23,8 +23,15 @@ public class AccountingLedger {
             FileReader fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
 
-            String line = bufferedReader.readLine();
 
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                Transaction transaction = parseTransaction(line);
+                transactions.add(transaction);
+                System.out.printf("%d %s $%.2f%n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+
+                line = bufferedReader.readLine();
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("I am sorry, it seems like that file does not exist");
@@ -55,7 +62,11 @@ public class AccountingLedger {
                 case "D" -> addDeposit();
                 case "P" -> makePayment();
                 case "L" -> displayLedger();
-                case "X" -> exit = true;
+                case "X" -> {
+                    exit = true;
+                    System.out.println("so sad to watch you go... we are wa");
+                }
+
                 default -> System.out.println("Please choose one of the options above");
             }
         }
@@ -63,6 +74,8 @@ public class AccountingLedger {
     }
 
     private static void displayLedger() {
+        System.out.println("welcome, you're getting your money up & not your funny up!");
+
 
     }
 
@@ -71,6 +84,7 @@ public class AccountingLedger {
     }
 
     private static void addDeposit() {
+        System.out.println("");
     }
 
     private static Transaction parseTransaction(String line) {
