@@ -18,6 +18,7 @@ public class Transaction {
         this.amount = amount;
     }
 
+
     public LocalDate getDate() {
         return date;
     }
@@ -35,14 +36,17 @@ public class Transaction {
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+
         this.description = description;
     }
 
     public String getVendor() {
+
         return vendor;
     }
 
