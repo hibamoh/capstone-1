@@ -68,10 +68,10 @@ public class AccountingLedger {
             switch (userInput) {
                 case "D","d" -> addDeposit(transactions, myScanner, fileName);
                 case "P","p" -> makePayment(transactions, myScanner, fileName);
-                case "L","l" -> displayLedger();
+                case "L","l" -> displayLedger(transactions, myScanner, fileName);
                 case "X","x" -> {
                     exit = true;
-                    System.out.println("So sad to watch you go... we are watching ");
+                    System.out.println("So sad to watch you go... we will still be watching ");
                 }
 
                 default -> System.out.println("Please choose one of the options above");
@@ -80,9 +80,46 @@ public class AccountingLedger {
         while (!exit);
     }
 
-    private static void displayLedger() {
+    private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
+        String menuPrompt = """
+                A) All - Display all entries.
+                D) Deposits - View all your deposits.
+                P) Payments - View all payments
+                R) Reports - Run a search
+                H) Home - Go home page
+                """;
+        boolean exit = false;
+
+        do {
+            System.out.println(menuPrompt);
+            String userInput = myScanner.nextLine();
+
+            switch (userInput) {
+                case "A","a" -> loadTransactions(fileName);
+                case "D","d" -> displayDeposit();
+                case "P","p" -> displayPayments();
+                case "R","r" -> displayReports();
+                case "H","h" ->  {
+                    exit = true;
+                    System.out.println("sending you back home");
+                    homeScreen(transactions, myScanner, fileName);
+                }
 
 
+                default -> System.out.println("Please choose one of the options above");
+            }
+        }
+        while (!exit);
+
+    }
+
+    private static void displayReports() {
+    }
+
+    private static void displayPayments() {
+    }
+
+    private static void displayDeposit() {
     }
 
     private static void makePayment(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
