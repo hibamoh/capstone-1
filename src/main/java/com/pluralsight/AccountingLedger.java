@@ -19,13 +19,15 @@ public class AccountingLedger {
         homeScreen(transactions, myScanner, fileName);
     }
 
-    public static ArrayList<Transaction> loadTransactions(String fileName) {
+    public static ArrayList<Transaction> loadTransactions(String fileName)  {
         ArrayList<Transaction> transactions = new ArrayList<>();
-        BufferedReader bufferedReader = null;
+        BufferedReader bufferedReader;
+
         try {
             FileReader fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
 
+            bufferedReader.readLine();
 
             String line = bufferedReader.readLine();
             while (line != null) {
@@ -35,6 +37,7 @@ public class AccountingLedger {
 
                 line = bufferedReader.readLine();
             }
+            bufferedReader.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("I am sorry, it seems like that file does not exist");
@@ -63,10 +66,10 @@ public class AccountingLedger {
             String userInput = myScanner.nextLine();
 
             switch (userInput) {
-                case "D" -> addDeposit(transactions, myScanner, fileName);
-                case "P" -> makePayment();
-                case "L" -> displayLedger();
-                case "X" -> {
+                case "D","d" -> addDeposit(transactions, myScanner, fileName);
+                case "P","p" -> makePayment(transactions, myScanner, fileName);
+                case "L","l" -> displayLedger();
+                case "X","x" -> {
                     exit = true;
                     System.out.println("So sad to watch you go... we are watching ");
                 }
@@ -82,7 +85,31 @@ public class AccountingLedger {
 
     }
 
-    private static void makePayment() {
+    private static void makePayment(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
+        System.out.println("where is all your money going to?");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        String date = now.format(dateFormat);
+        String time = now.format(timeFormat);
+
+        System.out.println("Description: ");
+        String description = myScanner.nextLine();
+
+        System.out.println("Vendor: ");
+        String vendor = myScanner.nextLine();
+
+        System.out.println("Amount: ");
+        double amount = Double.parseDouble(myScanner.nextLine());
+        LocalDate localDate = LocalDate.parse(date);
+        LocalTime localTime = LocalTime.parse(time);
+
+        Transaction newTransaction = new Transaction(localDate, localTime, description, vendor, amount);
+        transactions.add(newTransaction);
+        saveTransactionToFile(fileName, newTransaction);
+        System.out.println("You lost your dabloons :(");
+
 
     }
 
@@ -110,6 +137,7 @@ public class AccountingLedger {
         Transaction newTransaction = new Transaction(localDate, localTime, description, vendor, amount);
         transactions.add(newTransaction);
         saveTransactionToFile(fileName, newTransaction);
+        System.out.println("You got your money up!");
     }
 
     private static void saveTransactionToFile(String fileName, Transaction transaction) {
@@ -129,7 +157,7 @@ public class AccountingLedger {
 
             fileWriter.close();
         } catch (IOException e) {
-            System.out.println("Erm, it seems as though there is an issue..");
+            System.out.println("Erm, it seems as though there is an issue saving the transaction file..");
         }
     }
 
