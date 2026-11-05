@@ -105,7 +105,7 @@ public class AccountingLedger {
                 case "A","a" -> loadTransactions(fileName);
                 case "D","d" -> displayDeposit(transactions);
                 case "P","p" -> displayPayments(transactions);
-                case "R","r" -> displayReports();
+                case "R","r" -> displayReports(myScanner, transactions, fileName);
                 case "H","h" ->  {
                     exit = true;
                     System.out.println("sending you back, you don't have to go home but you can't stay here! ");
@@ -118,7 +118,55 @@ public class AccountingLedger {
 
     }
 
-    private static void displayReports() {
+    private static void displayReports(Scanner myScanner, ArrayList<Transaction> transactions, String fileName){
+        String menuPrompt = """
+                1) Month
+                2) Previous Month
+                3) Year To Date
+                4) Previous Year
+                5) Search by vendor
+                0) Back
+                """;
+        boolean exit = false;
+        do {
+            System.out.println(menuPrompt);
+            String userInput = myScanner.nextLine();
+
+            switch (userInput) {
+                case "1" -> monthToDate();
+                case "2" -> previousMonth();
+                case "3" -> yearToDate();
+                case "4" -> previousYear();
+                case "5" -> searchByVendor();
+                case "0" -> {
+                    exit = true;
+                    System.out.println("sending you back, you don't have to go home but you can't stay here! ");
+                    displayLedger(transactions, myScanner,fileName);
+                }
+                default -> System.out.println("Please choose one of the options above");
+            }
+        }
+        while (!exit);
+
+
+    }
+
+    private static void searchByVendor() {
+    }
+
+    private static void previousYear() {
+    }
+
+    private static void yearToDate() {
+    }
+
+    private static void previousMonth() {
+    }
+
+    private static void monthToDate() {
+        System.out.println("all your transactions from this month: ");
+
+
 
     }
 
