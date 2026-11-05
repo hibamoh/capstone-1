@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -33,7 +34,8 @@ public class AccountingLedger {
             while (line != null) {
                 Transaction transaction = parseTransaction(line);
                 transactions.add(transaction);
-                System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+                //System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
+                //        transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
 
                 line = bufferedReader.readLine();
             }
@@ -45,6 +47,11 @@ public class AccountingLedger {
         } catch (IOException e) {
             System.out.println("There seems to be an issue, try again");
             ;
+        }
+        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
+        for (Transaction transaction : transactions) {
+            System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
+                            transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
         }
 
         return transactions;
@@ -71,9 +78,8 @@ public class AccountingLedger {
                 case "L","l" -> displayLedger(transactions, myScanner, fileName);
                 case "X","x" -> {
                     exit = true;
-                    System.out.println("So sad to watch you go... we will still be watching ");
+                    System.out.println("So sad to watch you go... we do watch you..");
                 }
-
                 default -> System.out.println("Please choose one of the options above");
             }
         }
@@ -81,6 +87,7 @@ public class AccountingLedger {
     }
 
     private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
+
         String menuPrompt = """
                 A) All - Display all entries.
                 D) Deposits - View all your deposits.
@@ -96,16 +103,14 @@ public class AccountingLedger {
 
             switch (userInput) {
                 case "A","a" -> loadTransactions(fileName);
-                case "D","d" -> displayDeposit();
-                case "P","p" -> displayPayments();
+                case "D","d" -> displayDeposit(transactions);
+                case "P","p" -> displayPayments(transactions);
                 case "R","r" -> displayReports();
                 case "H","h" ->  {
                     exit = true;
-                    System.out.println("sending you back home");
+                    System.out.println("sending you back, you don't have to go home but you can't stay here! ");
                     homeScreen(transactions, myScanner, fileName);
                 }
-
-
                 default -> System.out.println("Please choose one of the options above");
             }
         }
@@ -114,15 +119,34 @@ public class AccountingLedger {
     }
 
     private static void displayReports() {
+
     }
 
-    private static void displayPayments() {
+    private static void displayPayments(ArrayList<Transaction> transactions) {
+        System.out.println("--- where you getting your coins from? ---");
+        for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
+            // : transactions is for each item in the ArrayList
+            if (t.getAmount() < 0.0){
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+            }
+        }
+        System.out.println("--- that is the end of your deposits ---");
     }
 
-    private static void displayDeposit() {
+    private static void displayDeposit(ArrayList<Transaction> transactions) {
+        System.out.println("--- where you getting your coins from? ---");
+        for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
+                                            // : transactions is for each item in the ArrayList
+            if (t.getAmount() > 0.0){
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+            }
+        }
+        System.out.println("--- that is the end of your deposits ---");
+
     }
 
-    private static void makePayment(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
+    private static void makePayment(ArrayList<Transaction> transactions,
+                                    Scanner myScanner, String fileName) {
         System.out.println("where is all your money going to?");
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -146,7 +170,6 @@ public class AccountingLedger {
         transactions.add(newTransaction);
         saveTransactionToFile(fileName, newTransaction);
         System.out.println("You lost your dabloons :(");
-
 
     }
 
