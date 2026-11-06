@@ -125,7 +125,6 @@ public class AccountingLedger {
         while (!exit);
     }
 
-
     private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
         System.out.println();
         String menuPrompt = """
@@ -263,9 +262,6 @@ public class AccountingLedger {
             }
 
         }
-
-
-
 
     }
 
