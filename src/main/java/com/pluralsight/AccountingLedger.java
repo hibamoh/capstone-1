@@ -28,7 +28,8 @@ public class AccountingLedger {
         String fileName = "src/main/resources/transactions.csv";
         ArrayList<Transaction> transactions = AccountingLedger.loadTransactions(fileName);
         System.out.println();
-        System.out.println("  /$$   /$$                                                   /$$                       /$$$$$$$                      /$$      \n" +
+        System.out.println
+                ("  /$$   /$$                                                   /$$                       /$$$$$$$                      /$$      \n" +
                 "| $$  /$$/                                                  | $$                      | $$__  $$                    | $$      \n" +
                 "| $$ /$$/   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$ | $$   /$$  /$$$$$$       | $$  \\ $$  /$$$$$$  /$$$$$$$ | $$   /$$\n" +
                 "| $$$$$/   /$$__  $$ /$$__  $$ /$$__  $$ /$$_____/ |____  $$| $$  /$$/ /$$__  $$      | $$$$$$$  |____  $$| $$__  $$| $$  /$$/\n" +
@@ -205,7 +206,7 @@ public class AccountingLedger {
     }
 
     private static void previousYear(ArrayList<Transaction> transactions) {
-        System.out.println("all your memories from this year month: ");
+        System.out.println("all your memories from last year: ");
         LocalDate today = LocalDate.now();
         int currentYear = today.getYear();
 
@@ -219,7 +220,7 @@ public class AccountingLedger {
     }
 
     private static void yearToDate(ArrayList<Transaction> transactions) {
-        System.out.println("all your memories from this year month: ");
+        System.out.println("all your memories from this year: ");
         LocalDate today = LocalDate.now();
         int currentYear = today.getYear();
 
