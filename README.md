@@ -43,7 +43,7 @@ Followed up with the home screen:
 
 <img width="467" height="188" alt="image" src="https://github.com/user-attachments/assets/788d3356-3f81-4e45-88ed-21bb51ed393d" />
 
-2. Users will enter their desired action and then proceed.
+**2. Users will enter their desired action and then proceed.**
 
 * **Add/Remove a Memory** - will prompt users to add information about their dream.
   
@@ -52,4 +52,12 @@ Followed up with the home screen:
 * **Ledger** - takes the user to another screen that prompts them for certain displays.
   <img width="568" height="192" alt="image" src="https://github.com/user-attachments/assets/f5a85b47-5479-4a9d-b97a-33ca84b8ecb9" />
 
-3. 
+**3. Good & Bad memories can be displayed** 
+<img width="654" height="263" alt="image" src="https://github.com/user-attachments/assets/0f6706c0-f013-4498-8bb0-27d5a55d9382" />
+
+
+**4. Users can run specific reports as well**
+<img width="516" height="227" alt="image" src="https://github.com/user-attachments/assets/227bdb8e-3159-441b-bad4-073226ddbdc7" />
+<img width="758" height="276" alt="image" src="https://github.com/user-attachments/assets/6a054069-8857-45f3-84f9-78da0e581f78" />
+
+
