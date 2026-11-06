@@ -33,37 +33,18 @@ This class is what runs. It is composed of various methods that:
                                                ₊˚ ✧ ━━━━⊱⋆⊰━━━━ ✧ ₊˚
 ## How does it run?
 
-The program begins by running the AccountingLedger. It will display the logo.
+1. The program begins by running the AccountingLedger. It will display the logo.
 <img width="1589" height="404" alt="image" src="https://github.com/user-attachments/assets/69adbd1a-eaf3-4904-b38d-5c7c4520973a" />
 Followed up with the home screen
 
-``` private static void homeScreen(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
-        String menuPrompt = """
-                What would you like to do today?
-                D) Add A Memory
-                P) Remove a memory
-                L) Ledger
-                X) Exit the application
-                """;
-        boolean exit = false;
-
-        do {
-            System.out.println(menuPrompt);
-            String userInput = myScanner.nextLine();
-
-            switch (userInput) {
-                case "D", "d" -> addDeposit(transactions, myScanner, fileName);
-                case "P", "p" -> makePayment(transactions, myScanner, fileName);
-                case "L", "l" -> displayLedger(transactions, myScanner, fileName);
-                case "X", "x" -> {
-                    exit = true;
-                    System.out.println("So sad to watch you go... we do watch you..");
-                }
-                default -> System.out.println("Please choose one of the options above");
-            }
-        }
-        while (!exit);
-    }
- ```
 
 <img width="467" height="188" alt="image" src="https://github.com/user-attachments/assets/788d3356-3f81-4e45-88ed-21bb51ed393d" />
+
+2. Users will enter their desired action and then proceed.
+
+* **Add/Remove a Memory** - will prompt users to add information about their dream.
+  
+<img width="535" height="206" alt="image" src="https://github.com/user-attachments/assets/2cda09ef-452e-45ee-9b63-5d1b8018c222" />
+
+* **Ledger** - takes the user to another screen that prompts them for certain displays.
+  <img width="568" height="192" alt="image" src="https://github.com/user-attachments/assets/f5a85b47-5479-4a9d-b97a-33ca84b8ecb9" />
