@@ -77,3 +77,9 @@ Transaction newTransaction = new Transaction(localDate, localTime, description, 
         saveTransactionToFile(fileName, newTransaction);
         System.out.println("You lost your dabloons :(");
 ```
+
+## What would I do next time? + Challenges
+# PLAN! 
+My biggest mistake was jumping right in rather than taking the time to fully understand the requirements. Having a map or even a rough sketch before even opening a file would have been so helpful early on. I realized after beginning how convoluted it was going to be, and without a brainstorming page, I def would have gotten lost. 
+
+This would have also helped me with my slump, which happened this Tuesday. I was in the unfortunate position of being stuck in a hole on Tuesday, which really impacted my progress. I was able to overcome it the following days, but that missed day was time needed. I think planning ahead would have helped me, but also keeping myself accountable.
