@@ -140,7 +140,7 @@ public class AccountingLedger {
                 case "2" -> previousMonth(transactions);
                 case "3" -> yearToDate(transactions);
                 case "4" -> previousYear(transactions);
-                case "5" -> searchByVendor(transactions);
+                case "5" -> searchByVendor(transactions, myScanner);
                 case "0" -> {
                     exit = true;
                     System.out.println("sending you back, you don't have to go home but you can't stay here! ");
@@ -154,7 +154,16 @@ public class AccountingLedger {
 
     }
 
-    private static void searchByVendor() {
+    private static void searchByVendor(ArrayList<Transaction> transactions, Scanner myScanner) {
+        System.out.println("who was taking all your money");
+        String vendor = myScanner.nextLine();
+        ArrayList<Transaction> vendors = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getVendor()  == vendor) {
+                vendors.add(t);
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
+        }
     }
 
     private static void previousYear(ArrayList<Transaction> transactions) {
