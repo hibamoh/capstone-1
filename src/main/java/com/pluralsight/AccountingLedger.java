@@ -138,9 +138,9 @@ public class AccountingLedger {
             switch (userInput) {
                 case "1" -> monthToDate(transactions);
                 case "2" -> previousMonth(transactions);
-                case "3" -> yearToDate();
-                case "4" -> previousYear();
-                case "5" -> searchByVendor();
+                case "3" -> yearToDate(transactions);
+                case "4" -> previousYear(transactions);
+                case "5" -> searchByVendor(transactions);
                 case "0" -> {
                     exit = true;
                     System.out.println("sending you back, you don't have to go home but you can't stay here! ");
@@ -157,7 +157,18 @@ public class AccountingLedger {
     private static void searchByVendor() {
     }
 
-    private static void previousYear() {
+    private static void previousYear(ArrayList<Transaction> transactions) {
+        System.out.println("all your transactions from this year month: ");
+        LocalDate today = LocalDate.now();
+        int currentYear = today.getYear();
+
+        ArrayList<Transaction> previousYear = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getDate().getYear()  == currentYear -1) {
+                previousYear.add(t);
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
+        }
     }
 
     private static void yearToDate(ArrayList<Transaction> transactions) {
