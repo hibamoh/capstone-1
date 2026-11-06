@@ -6,7 +6,6 @@
                                                                                         
 
 ## Descripton
-_________________________________________________________________________________
 
 *Keepsake Bank allows you to hold onto what really matters.*
 
