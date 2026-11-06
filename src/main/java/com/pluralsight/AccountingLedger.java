@@ -16,6 +16,19 @@ public class AccountingLedger {
         Scanner myScanner = new Scanner(System.in);
         String fileName = "src/main/resources/transactions.csv";
         ArrayList<Transaction> transactions = AccountingLedger.loadTransactions(fileName);
+        System.out.println();
+        System.out.println("  /$$   /$$                                                   /$$                       /$$$$$$$                      /$$      \n" +
+                "| $$  /$$/                                                  | $$                      | $$__  $$                    | $$      \n" +
+                "| $$ /$$/   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$ | $$   /$$  /$$$$$$       | $$  \\ $$  /$$$$$$  /$$$$$$$ | $$   /$$\n" +
+                "| $$$$$/   /$$__  $$ /$$__  $$ /$$__  $$ /$$_____/ |____  $$| $$  /$$/ /$$__  $$      | $$$$$$$  |____  $$| $$__  $$| $$  /$$/\n" +
+                "| $$  $$  | $$$$$$$$| $$$$$$$$| $$  \\ $$|  $$$$$$   /$$$$$$$| $$$$$$/ | $$$$$$$$      | $$__  $$  /$$$$$$$| $$  \\ $$| $$$$$$/ \n" +
+                "| $$\\  $$ | $$_____/| $$_____/| $$  | $$ \\____  $$ /$$__  $$| $$_  $$ | $$_____/      | $$  \\ $$ /$$__  $$| $$  | $$| $$_  $$ \n" +
+                "| $$ \\  $$|  $$$$$$$|  $$$$$$$| $$$$$$$/ /$$$$$$$/|  $$$$$$$| $$ \\  $$|  $$$$$$$      | $$$$$$$/|  $$$$$$$| $$  | $$| $$ \\  $$\n" +
+                "|__/  \\__/ \\_______/ \\_______/| $$____/ |_______/  \\_______/|__/  \\__/ \\_______/      |_______/  \\_______/|__/  |__/|__/  \\__/\n" +
+                "                              | $$                                                                                            \n" +
+                "                              | $$                                                                                            \n" +
+                "                              |__/                                                                                             ");
+        System.out.println();
         System.out.println("Welcome to Keepsake Bank! Hold on to what truly matters.");
         System.out.println();
         homeScreen(transactions, myScanner, fileName);
@@ -91,8 +104,9 @@ public class AccountingLedger {
     }
 
     private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
-
+        System.out.println();
         String menuPrompt = """
+                
                 A) All - Display all memories.
                 D) Good Memories - View your best memories.
                 P) Memory Removal - Let go of your past.
