@@ -2,7 +2,7 @@
 
 *remove the last 20 presentations from memory*
 
-# *Keepsake Bank*
+ # *Keepsake Bank*
    *Hold onto what really matters.*                                                                                     
 
 ## Descripton
@@ -15,14 +15,14 @@ What I created was a simple CLI app that tracks financial transactions. I took c
 
 The program is made up of two classes:
 
-### Transaction.java 
+### ⟢──────˚₊‧꒰ა Transaction.java ໒꒱ ‧₊˚──────⟢
 This is the blueprint for every transaction. It is made up of: 
 
 * Five private fields: date, time, description, vendor, amount
 * A parameterized constructor that initializes the object
 * Five getters and setters for the respective fields
 
-### AccountingLedger.java
+### ⟢──────˚₊‧꒰ა AccountingLedger.java ໒꒱ ‧₊˚──────⟢
 This class is what runs. It is composed of various methods that:
 * Displays the various screens and redirects to the correct screen
 * Loads the transactions from the CSV file and sorts them
@@ -31,6 +31,7 @@ This class is what runs. It is composed of various methods that:
 
 
                                                ₊˚ ✧ ━━━━⊱⋆⊰━━━━ ✧ ₊˚
+## How does it run?
 
 The program begins by running the AccountingLedger. It will display the logo.
 <img width="1589" height="404" alt="image" src="https://github.com/user-attachments/assets/69adbd1a-eaf3-4904-b38d-5c7c4520973a" />
@@ -62,6 +63,7 @@ Followed up with the home screen
             }
         }
         while (!exit);
-    } ```
+    }
+ ```
 
-
+<img width="467" height="188" alt="image" src="https://github.com/user-attachments/assets/788d3356-3f81-4e45-88ed-21bb51ed393d" />
