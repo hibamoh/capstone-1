@@ -1,16 +1,43 @@
 <img width="498" height="245" alt="йокелемене-men-in-black" src="https://github.com/user-attachments/assets/4c312a51-cc03-4ec4-b1fe-8683e2118c82" />
 
-* remove the last 20 presentations from memory *
+*remove the last 20 presentations from memory*
 
 
 
-
-# KEEPSAFE BANK
+ .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.   .----------------.  .----------------.  .-----------------. .----------------. 
+| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. | | .--------------. || .--------------. || .--------------. || .--------------. |
+| |  ___  ____   | || |  _________   | || |  _________   | || |   ______     | || |    _______   | || |      __      | || |  ___  ____   | || |  _________   | | | |   ______     | || |      __      | || | ____  _____  | || |  ___  ____   | |
+| | |_  ||_  _|  | || | |_   ___  |  | || | |_   ___  |  | || |  |_   __ \   | || |   /  ___  |  | || |     /  \     | || | |_  ||_  _|  | || | |_   ___  |  | | | |  |_   _ \    | || |     /  \     | || ||_   \|_   _| | || | |_  ||_  _|  | |
+| |   | |_/ /    | || |   | |_  \_|  | || |   | |_  \_|  | || |    | |__) |  | || |  |  (__ \_|  | || |    / /\ \    | || |   | |_/ /    | || |   | |_  \_|  | | | |    | |_) |   | || |    / /\ \    | || |  |   \ | |   | || |   | |_/ /    | |
+| |   |  __'.    | || |   |  _|  _   | || |   |  _|  _   | || |    |  ___/   | || |   '.___`-.   | || |   / ____ \   | || |   |  __'.    | || |   |  _|  _   | | | |    |  __'.   | || |   / ____ \   | || |  | |\ \| |   | || |   |  __'.    | |
+| |  _| |  \ \_  | || |  _| |___/ |  | || |  _| |___/ |  | || |   _| |_      | || |  |`\____) |  | || | _/ /    \ \_ | || |  _| |  \ \_  | || |  _| |___/ |  | | | |   _| |__) |  | || | _/ /    \ \_ | || | _| |_\   |_  | || |  _| |  \ \_  | |
+| | |____||____| | || | |_________|  | || | |_________|  | || |  |_____|     | || |  |_______.'  | || ||____|  |____|| || | |____||____| | || | |_________|  | | | |  |_______/   | || ||____|  |____|| || ||_____|\____| | || | |____||____| | |
+| |              | || |              | || |              | || |              | || |              | || |              | || |              | || |              | | | |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' | | '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'   '----------------'  '----------------'  '----------------'  '----------------' 
 
 ## Descripton
 ___________________________________________________________________________________
 
 *Keepsake Bank allows you to hold onto what really matters.*
 
-What I created was a simple CLI app that tracks financial transactions. I took creative liberty and spiced it up so that, rather than being a regular bank, it is a memory bank. The memory bank allows you to add and remove memories that cost bliss points. Rather than a typical vendor, what is being tracked is who the memory is shared with. It allows users to view their ledgers and filter through their reports. It is all saved to a CSV file. 
+What I created was a simple CLI app that tracks financial transactions. I took creative liberty and spiced it up so that, rather than being a regular bank, it is a memory bank. The memory bank allows you to add and remove memories that cost bliss points. Instead of a typical vendor, it tracks who the memory is shared with. It lets users view their ledgers and filter their reports. It is all saved to a CSV file. 
+
+## How does it Work?_________________________________________________________________________________
+
+**Great Question!**
+
+The program is made up of two classes:
+
+### Transaction.java 
+This is the blueprint for every transaction. 
+
+
+### AccountingLedger.java
+
+The program begins with its logo and home screen. 
+<img width="1589" height="404" alt="image" src="https://github.com/user-attachments/assets/69adbd1a-eaf3-4904-b38d-5c7c4520973a" />
+
+```
+
 
