@@ -10,6 +10,17 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ *
+ * Runs the Keepsake Bank accounting ledger application.
+ * <p>
+ * The application stores memories as transactions. Positive amounts represent
+ * deposits (good memories), while negative amounts represent payments or memories
+ * the user is choosing to let go of. The currency is bliss points. Transactions are loaded from and saved to
+ * a csv file.
+ *
+ */
+
 public class AccountingLedger {
 
     public static void main(String[] args) {
@@ -34,7 +45,13 @@ public class AccountingLedger {
         homeScreen(transactions, myScanner, fileName);
     }
 
-    public static ArrayList<Transaction> loadTransactions(String fileName)  {
+    /**
+     * this method reads the csv file through the buffered reader catches any exceptions.
+     * uses the java comparator function to sort the array in reverse order
+     * or newest entries.
+     *
+     */
+    public static ArrayList<Transaction> loadTransactions(String fileName) {
         ArrayList<Transaction> transactions = new ArrayList<>();
         BufferedReader bufferedReader;
 
@@ -48,8 +65,6 @@ public class AccountingLedger {
             while (line != null) {
                 Transaction transaction = parseTransaction(line);
                 transactions.add(transaction);
-                //System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
-                //        transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
 
                 line = bufferedReader.readLine();
             }
@@ -68,13 +83,19 @@ public class AccountingLedger {
 
     }
 
-    private static void displayAll(ArrayList<Transaction> transactions){
+    /**
+     * displays all the transactions in the csv
+     */
+    private static void displayAll(ArrayList<Transaction> transactions) {
         for (Transaction transaction : transactions) {
             System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
                     transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
         }
     }
 
+    /**
+     * home screen, prompts user to either add/remove memories, view the ledger or exit the application
+     */
     private static void homeScreen(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
         String menuPrompt = """
                 What would you like to do today?
@@ -90,10 +111,10 @@ public class AccountingLedger {
             String userInput = myScanner.nextLine();
 
             switch (userInput) {
-                case "D","d" -> addDeposit(transactions, myScanner, fileName);
-                case "P","p" -> makePayment(transactions, myScanner, fileName);
-                case "L","l" -> displayLedger(transactions, myScanner, fileName);
-                case "X","x" -> {
+                case "D", "d" -> addDeposit(transactions, myScanner, fileName);
+                case "P", "p" -> makePayment(transactions, myScanner, fileName);
+                case "L", "l" -> displayLedger(transactions, myScanner, fileName);
+                case "X", "x" -> {
                     exit = true;
                     System.out.println("So sad to watch you go... we do watch you..");
                 }
@@ -102,6 +123,7 @@ public class AccountingLedger {
         }
         while (!exit);
     }
+
 
     private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
         System.out.println();
@@ -120,11 +142,11 @@ public class AccountingLedger {
             String userInput = myScanner.nextLine();
 
             switch (userInput) {
-                case "A","a" -> displayAll(transactions);
-                case "D","d" -> displayDeposit(transactions);
-                case "P","p" -> displayPayments(transactions);
-                case "R","r" -> displayReports(myScanner, transactions, fileName);
-                case "H","h" ->  {
+                case "A", "a" -> displayAll(transactions);
+                case "D", "d" -> displayDeposit(transactions);
+                case "P", "p" -> displayPayments(transactions);
+                case "R", "r" -> displayReports(myScanner, transactions, fileName);
+                case "H", "h" -> {
                     exit = true;
                     System.out.println("sending you back, you don't have to go home but you can't stay here! ");
                     homeScreen(transactions, myScanner, fileName);
@@ -136,7 +158,7 @@ public class AccountingLedger {
 
     }
 
-    private static void displayReports(Scanner myScanner, ArrayList<Transaction> transactions, String fileName){
+    private static void displayReports(Scanner myScanner, ArrayList<Transaction> transactions, String fileName) {
         String menuPrompt = """
                 1) Month to date
                 2) Previous Month
@@ -159,7 +181,7 @@ public class AccountingLedger {
                 case "0" -> {
                     exit = true;
                     System.out.println("sending you back, you don't have to go home but you can't stay here! ");
-                    displayLedger(transactions, myScanner,fileName);
+                    displayLedger(transactions, myScanner, fileName);
                 }
                 default -> System.out.println("Please choose one of the options above");
             }
@@ -189,7 +211,7 @@ public class AccountingLedger {
 
         ArrayList<Transaction> previousYear = new ArrayList<>();
         for (Transaction t : transactions) {
-            if (t.getDate().getYear()  == currentYear -1) {
+            if (t.getDate().getYear() == currentYear - 1) {
                 previousYear.add(t);
                 System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
@@ -203,7 +225,7 @@ public class AccountingLedger {
 
         ArrayList<Transaction> yearToDate = new ArrayList<>();
         for (Transaction t : transactions) {
-            if (t.getDate().getYear() == currentYear ) {
+            if (t.getDate().getYear() == currentYear) {
                 yearToDate.add(t);
                 System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
@@ -233,10 +255,10 @@ public class AccountingLedger {
         int currentYear = today.getYear();
 
         ArrayList<Transaction> monthToDate = new ArrayList<>();
-        for(Transaction t : transactions){
-            if(t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear){
+        for (Transaction t : transactions) {
+            if (t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear) {
                 monthToDate.add(t);
-                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
 
         }
@@ -245,10 +267,10 @@ public class AccountingLedger {
 
     private static void displayPayments(ArrayList<Transaction> transactions) {
         System.out.println("--- all your best memories ---");
-        for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
+        for (Transaction t : transactions) { // Transaction t is a temp variable that will hold the current transaction
             // : transactions is for each item in the ArrayList
-            if (t.getAmount() < 0.0){
-                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+            if (t.getAmount() < 0.0) {
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
         }
         System.out.println("--- that is the end of your memories ---");
@@ -256,16 +278,22 @@ public class AccountingLedger {
 
     private static void displayDeposit(ArrayList<Transaction> transactions) {
         System.out.println("--- what have we left behind us? ---");
-        for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
-                                            // : transactions is for each item in the ArrayList
-            if (t.getAmount() > 0.0){
-                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+        for (Transaction t : transactions) { // Transaction t is a temp variable that will hold the current transaction
+            // : transactions is for each item in the ArrayList
+            if (t.getAmount() > 0.0) {
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
         }
         System.out.println("--- that is the end of your deposits ---");
 
     }
 
+    /**
+     * prompts users to remove bad memories, sorts the transactions & saves
+     * @param transactions
+     * @param myScanner
+     * @param fileName
+     */
     private static void makePayment(ArrayList<Transaction> transactions,
                                     Scanner myScanner, String fileName) {
         System.out.println("Some memories are deposits. Others are lessons");
@@ -295,6 +323,12 @@ public class AccountingLedger {
 
     }
 
+    /**
+     * prompts users to add memories, sorts the transactions & saves
+     * @param transactions
+     * @param myScanner
+     * @param fileName
+     */
     private static void addDeposit(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
         System.out.println("Your memories are your greatest currency");
 
