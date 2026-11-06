@@ -11,7 +11,7 @@
 
 What I created was a simple CLI app that tracks financial transactions. I took creative liberty and spiced it up so that, rather than being a regular bank, it is a memory bank. The memory bank allows you to add and remove memories that cost bliss points. Instead of a typical vendor, it tracks who the memory is shared with. It lets users view their ledgers and filter their reports. It is all saved to a CSV file. 
 
-## What is it made up of?_________________________________________________________________________________
+## What is it made up of?
 
 **Great Question!**
 
