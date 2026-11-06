@@ -57,7 +57,23 @@ Followed up with the home screen:
 
 
 **4. Users can run specific reports as well**
+<br>
 <img width="516" height="227" alt="image" src="https://github.com/user-attachments/assets/227bdb8e-3159-441b-bad4-073226ddbdc7" />
+<br>
 <img width="758" height="276" alt="image" src="https://github.com/user-attachments/assets/6a054069-8857-45f3-84f9-78da0e581f78" />
 
+**5. User can go back & exit the screens throughout the process**
+<br>
+<img width="653" height="298" alt="image" src="https://github.com/user-attachments/assets/6e7b6f0e-cb5c-408a-a40f-ec7f6371e248" />
 
+
+## What stood out to me? 
+
+A piece of code that stood out to me the most was the sorting code. I was struggling significantly with how to sort the transactions from newest to oldest & with some help from my classmates *shout out hage & yahir* I was able to get it to work.
+```
+Transaction newTransaction = new Transaction(localDate, localTime, description, vendor, amount);
+        transactions.add(newTransaction);
+        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
+        saveTransactionToFile(fileName, newTransaction);
+        System.out.println("You lost your dabloons :(");
+```
