@@ -33,12 +33,13 @@ This class is what runs. It is composed of various methods that:
                                                ₊˚ ✧ ━━━━⊱⋆⊰━━━━ ✧ ₊˚
 ## How does it run?
 
-1. The program begins by running the AccountingLedger. It will display the logo.
+**1. The program begins by running the AccountingLedger. It will display the logo.** 
 
 <img width="1589" height="404" alt="image" src="https://github.com/user-attachments/assets/69adbd1a-eaf3-4904-b38d-5c7c4520973a" />
+
 Followed up with the home screen: 
 
-
+<br>
 
 <img width="467" height="188" alt="image" src="https://github.com/user-attachments/assets/788d3356-3f81-4e45-88ed-21bb51ed393d" />
 
@@ -50,3 +51,5 @@ Followed up with the home screen:
 
 * **Ledger** - takes the user to another screen that prompts them for certain displays.
   <img width="568" height="192" alt="image" src="https://github.com/user-attachments/assets/f5a85b47-5479-4a9d-b97a-33ca84b8ecb9" />
+
+3. 
