@@ -273,6 +273,7 @@ public class AccountingLedger {
 
         Transaction newTransaction = new Transaction(localDate, localTime, description, vendor, amount);
         transactions.add(newTransaction);
+        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
         saveTransactionToFile(fileName, newTransaction);
         System.out.println("You lost your dabloons :(");
 
@@ -301,6 +302,7 @@ public class AccountingLedger {
 
         Transaction newTransaction = new Transaction(localDate, localTime, description, vendor, amount);
         transactions.add(newTransaction);
+        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
         saveTransactionToFile(fileName, newTransaction);
         System.out.println("You got your money up!");
     }
@@ -309,6 +311,7 @@ public class AccountingLedger {
         try {
             // true means "append" to the existing file instead of overwriting it
             FileWriter fileWriter = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // this makes it so that the information is displayed as: date|time|description|vendor|amount
             String line = transaction.getDate() + "|" +
@@ -317,8 +320,8 @@ public class AccountingLedger {
                     transaction.getVendor() + "|" +
                     transaction.getAmount();
 
-            fileWriter.write(line);
-            fileWriter.write("\n"); // adds a new line so the next transaction starts on a new row
+            bufferedWriter.write(line);
+            bufferedWriter.newLine(); // adds a new line so the next transaction starts on a new row
 
             fileWriter.close();
         } catch (IOException e) {
