@@ -7,4 +7,10 @@
 
 # KEEPSAFE BANK
 
-## What does the application do? 
+## Descripton
+___________________________________________________________________________________
+
+*Keepsake Bank allows you to hold onto what really matters.*
+
+What I created was a simple CLI app that tracks financial transactions. I took creative liberty and spiced it up so that, rather than being a regular bank, it is a memory bank. The memory bank allows you to add and remove memories that cost bliss points. Rather than a typical vendor, what is being tracked is who the memory is shared with. It allows users to view their ledgers and filter through their reports. It is all saved to a CSV file. 
+
