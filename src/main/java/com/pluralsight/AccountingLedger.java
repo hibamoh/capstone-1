@@ -137,7 +137,7 @@ public class AccountingLedger {
 
             switch (userInput) {
                 case "1" -> monthToDate(transactions);
-                case "2" -> previousMonth();
+                case "2" -> previousMonth(transactions);
                 case "3" -> yearToDate();
                 case "4" -> previousYear();
                 case "5" -> searchByVendor();
@@ -160,10 +160,33 @@ public class AccountingLedger {
     private static void previousYear() {
     }
 
-    private static void yearToDate() {
+    private static void yearToDate(ArrayList<Transaction> transactions) {
+        System.out.println("all your transactions from this year month: ");
+        LocalDate today = LocalDate.now();
+        int currentYear = today.getYear();
+
+        ArrayList<Transaction> yearToDate = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getDate().getYear() == currentYear ) {
+                yearToDate.add(t);
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
+        }
     }
 
-    private static void previousMonth() {
+    private static void previousMonth(ArrayList<Transaction> transactions) {
+        System.out.println("all your transactions from last month: ");
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+
+        ArrayList<Transaction> previousMonth = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getDate().getMonthValue() == currentMonth - 1 && t.getDate().getYear() == currentYear) {
+                previousMonth.add(t);
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
+        }
     }
 
 
