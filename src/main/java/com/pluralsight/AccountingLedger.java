@@ -16,7 +16,8 @@ public class AccountingLedger {
         Scanner myScanner = new Scanner(System.in);
         String fileName = "src/main/resources/transactions.csv";
         ArrayList<Transaction> transactions = AccountingLedger.loadTransactions(fileName);
-        System.out.println("Welcome to Hub's Accounting Ledger!");
+        System.out.println("Welcome to Keepsake Bank! Hold on to what truly matters.");
+        System.out.println();
         homeScreen(transactions, myScanner, fileName);
     }
 
@@ -64,8 +65,8 @@ public class AccountingLedger {
     private static void homeScreen(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
         String menuPrompt = """
                 What would you like to do today?
-                D) Add Deposit
-                P) Make a Payment
+                D) Add A Memory
+                P) Remove a memory
                 L) Ledger
                 X) Exit the application
                 """;
@@ -92,9 +93,9 @@ public class AccountingLedger {
     private static void displayLedger(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
 
         String menuPrompt = """
-                A) All - Display all entries.
-                D) Deposits - View all your deposits.
-                P) Payments - View all payments
+                A) All - Display all memories.
+                D) Good Memories - View your best memories.
+                P) Memory Removal - Let go of your past.
                 R) Reports - Run a search
                 H) Home - Go home page
                 """;
@@ -155,7 +156,7 @@ public class AccountingLedger {
     }
 
     private static void searchByVendor(ArrayList<Transaction> transactions, Scanner myScanner) {
-        System.out.println("who was taking all your money");
+        System.out.println("Who do you want to remember?");
         String vendor = myScanner.nextLine();
         ArrayList<Transaction> vendors = new ArrayList<>();
         for (Transaction t : transactions) {
@@ -168,7 +169,7 @@ public class AccountingLedger {
     }
 
     private static void previousYear(ArrayList<Transaction> transactions) {
-        System.out.println("all your transactions from this year month: ");
+        System.out.println("all your memories from this year month: ");
         LocalDate today = LocalDate.now();
         int currentYear = today.getYear();
 
@@ -182,7 +183,7 @@ public class AccountingLedger {
     }
 
     private static void yearToDate(ArrayList<Transaction> transactions) {
-        System.out.println("all your transactions from this year month: ");
+        System.out.println("all your memories from this year month: ");
         LocalDate today = LocalDate.now();
         int currentYear = today.getYear();
 
@@ -196,7 +197,7 @@ public class AccountingLedger {
     }
 
     private static void previousMonth(ArrayList<Transaction> transactions) {
-        System.out.println("all your transactions from last month: ");
+        System.out.println("all your memories from last month: ");
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue();
         int currentYear = today.getYear();
@@ -212,7 +213,7 @@ public class AccountingLedger {
 
 
     private static void monthToDate(ArrayList<Transaction> transactions) {
-        System.out.println("all your transactions from this month: ");
+        System.out.println("all your memories from this month: ");
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue();
         int currentYear = today.getYear();
@@ -229,18 +230,18 @@ public class AccountingLedger {
     }
 
     private static void displayPayments(ArrayList<Transaction> transactions) {
-        System.out.println("--- where you getting your coins from? ---");
+        System.out.println("--- all your best memories ---");
         for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
             // : transactions is for each item in the ArrayList
             if (t.getAmount() < 0.0){
                 System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
             }
         }
-        System.out.println("--- that is the end of your deposits ---");
+        System.out.println("--- that is the end of your memories ---");
     }
 
     private static void displayDeposit(ArrayList<Transaction> transactions) {
-        System.out.println("--- where you getting your coins from? ---");
+        System.out.println("--- what have we left behind us? ---");
         for (Transaction t: transactions){ // Transaction t is a temp variable that will hold the current transaction
                                             // : transactions is for each item in the ArrayList
             if (t.getAmount() > 0.0){
@@ -253,7 +254,7 @@ public class AccountingLedger {
 
     private static void makePayment(ArrayList<Transaction> transactions,
                                     Scanner myScanner, String fileName) {
-        System.out.println("where is all your money going to?");
+        System.out.println("Some memories are deposits. Others are lessons");
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -264,10 +265,10 @@ public class AccountingLedger {
         System.out.println("Description: ");
         String description = myScanner.nextLine();
 
-        System.out.println("Vendor: ");
+        System.out.println("Who was involved: ");
         String vendor = myScanner.nextLine();
 
-        System.out.println("Amount: ");
+        System.out.println("Bliss points: ");
         double amount = Double.parseDouble(myScanner.nextLine());
         LocalDate localDate = LocalDate.parse(date);
         LocalTime localTime = LocalTime.parse(time);
@@ -281,7 +282,7 @@ public class AccountingLedger {
     }
 
     private static void addDeposit(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
-        System.out.println("get your money up & not your funny up!");
+        System.out.println("Your memories are your greatest currency");
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -293,10 +294,10 @@ public class AccountingLedger {
         System.out.println("Description: ");
         String description = myScanner.nextLine();
 
-        System.out.println("Vendor: ");
+        System.out.println("Who was involved: ");
         String vendor = myScanner.nextLine();
 
-        System.out.println("Amount: ");
+        System.out.println("Bliss Points: ");
         double amount = Double.parseDouble(myScanner.nextLine());
         LocalDate localDate = LocalDate.parse(date);
         LocalTime localTime = LocalTime.parse(time);
@@ -305,7 +306,7 @@ public class AccountingLedger {
         transactions.add(newTransaction);
         transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
         saveTransactionToFile(fileName, newTransaction);
-        System.out.println("You got your money up!");
+        System.out.println("Your memory has been saved!");
     }
 
     private static void saveTransactionToFile(String fileName, Transaction transaction) {
