@@ -159,7 +159,7 @@ public class AccountingLedger {
         String vendor = myScanner.nextLine();
         ArrayList<Transaction> vendors = new ArrayList<>();
         for (Transaction t : transactions) {
-            if (t.getVendor()  == vendor) {
+            if (t.getVendor().equalsIgnoreCase(vendor)) {
                 vendors.add(t);
                 System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
