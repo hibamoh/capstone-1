@@ -2,7 +2,7 @@
 
 *remove the last 20 presentations from memory*
 
-#*Keepsake Bank*
+#Keepsake Bank
                                                                                         
 
 ## Descripton
