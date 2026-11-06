@@ -161,6 +161,7 @@ public class AccountingLedger {
         for (Transaction t : transactions) {
             if (t.getVendor().equalsIgnoreCase(vendor)) {
                 vendors.add(t);
+
                 System.out.printf("%s %s %s %s $%.2f%n", t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
             }
         }
