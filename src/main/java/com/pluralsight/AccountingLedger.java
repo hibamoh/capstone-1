@@ -49,13 +49,16 @@ public class AccountingLedger {
             ;
         }
         transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
-        for (Transaction transaction : transactions) {
-            System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
-                            transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
-        }
 
         return transactions;
 
+    }
+
+    private static void displayAll(ArrayList<Transaction> transactions){
+        for (Transaction transaction : transactions) {
+            System.out.printf("%s %s %s %s $%.2f%n", transaction.getDate(), transaction.getTime(),
+                    transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
+        }
     }
 
     private static void homeScreen(ArrayList<Transaction> transactions, Scanner myScanner, String fileName) {
@@ -102,7 +105,7 @@ public class AccountingLedger {
             String userInput = myScanner.nextLine();
 
             switch (userInput) {
-                case "A","a" -> loadTransactions(fileName);
+                case "A","a" -> displayAll(transactions);
                 case "D","d" -> displayDeposit(transactions);
                 case "P","p" -> displayPayments(transactions);
                 case "R","r" -> displayReports(myScanner, transactions, fileName);
@@ -120,7 +123,7 @@ public class AccountingLedger {
 
     private static void displayReports(Scanner myScanner, ArrayList<Transaction> transactions, String fileName){
         String menuPrompt = """
-                1) Month
+                1) Month to date
                 2) Previous Month
                 3) Year To Date
                 4) Previous Year
@@ -133,7 +136,7 @@ public class AccountingLedger {
             String userInput = myScanner.nextLine();
 
             switch (userInput) {
-                case "1" -> monthToDate();
+                case "1" -> monthToDate(transactions);
                 case "2" -> previousMonth();
                 case "3" -> yearToDate();
                 case "4" -> previousYear();
@@ -163,10 +166,21 @@ public class AccountingLedger {
     private static void previousMonth() {
     }
 
-    private static void monthToDate() {
+
+    private static void monthToDate(ArrayList<Transaction> transactions) {
         System.out.println("all your transactions from this month: ");
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
 
+        ArrayList<Transaction> monthToDate = new ArrayList<>();
+        for(Transaction t : transactions){
+            if(t.getDate().getMonthValue() == currentMonth && t.getDate().getYear() == currentYear){
+                monthToDate.add(t);
+                System.out.printf("%s %s %s %s $%.2f%n", t.getDate(),t.getTime(), t.getDescription(),t.getVendor(),t.getAmount());
+            }
 
+        }
 
     }
 
