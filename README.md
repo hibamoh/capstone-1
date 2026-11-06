@@ -3,7 +3,14 @@
 *remove the last 20 presentations from memory*
 
  # *Keepsake Bank*
-   *Hold onto what really matters.*                                                                                     
+   *Hold onto what really matters.* The bank that allows you to cherish all the good moments, and let the bad ones behind you. 
+   __/      \____/      \____/      \__
+\      /    \      /    \      /    \      /    \      /    \      /  
+ \____/      \____/      \____/      \____/      \____/      \____/   
+ /    \      /    \      /    \      /    \      /    \      /    \   
+/      \____/      \____/      \____/      \____/      \____/      \__
+\      /    \      /    \      /    \      /    \      /    \      /  
+ \____/      \____/      \____/      \____/      \____/      \____/
 
 ## Descripton
 
